@@ -1,0 +1,10 @@
+excerpt_separator: ""
+pygments: true
+markdown: kramdown
+url: http://joyeon.github.io
+title: Joyeon
+email: joyeon@gmail.com
+author: Joy Cho
+description: My awesome new site
+paginate: 3
+google_analytics: UA-80236952-1
