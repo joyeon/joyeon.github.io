@@ -5,7 +5,7 @@ url: https://joyeon.co
 title: Joyeon
 email: joyeon@gmail.com
 author: Joy Cho
-description: My awesome new site
+description: Joy's personal website powered by Jekyll
 paginate: 3
-google_analytics: UA-80236952-1
+google_analytics: UA-17998259-1
 plugins: [jekyll-paginate]
