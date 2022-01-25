@@ -8,3 +8,4 @@ author: Joy Cho
 description: My awesome new site
 paginate: 3
 google_analytics: UA-80236952-1
+theme: jekyll-theme-minimal
