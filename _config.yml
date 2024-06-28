@@ -7,5 +7,5 @@ email: joyeon@gmail.com
 author: Joy Cho
 description: Joy's personal website powered by Jekyll
 paginate: 3
-google_analytics: G-LESY5WC0CG
+google_analytics: UA-17998259-1
 plugins: [jekyll-paginate]
