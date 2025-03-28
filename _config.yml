@@ -6,6 +6,6 @@ title: Joyeon
 email: joyeon@gmail.com
 author: Joy Cho
 description: Joy's personal website powered by Jekyll
-paginate: 3
+paginate: 5
 google_analytics: UA-17998259-1
 plugins: [jekyll-paginate]
