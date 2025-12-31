@@ -772,3 +772,35 @@ table td, table th {
   border: 1px solid;
   font-size: smaller;
 }
+
+.newsletter-inline {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.newsletter-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.newsletter-inline form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-inline input[type="email"] {
+  padding: 0.4rem 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+}
+
+.newsletter-inline button {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.9rem;
+  background: none;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
