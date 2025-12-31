@@ -779,6 +779,14 @@ table td, table th {
   border-top: 1px solid #eee;
 }
 
+.newsletter-inline .inline-container {
+  margin: 0 !important;
+}
+
+.newsletter-inline .mastfoot {
+  display: none !important;
+}
+
 .newsletter-text {
   font-size: 0.9rem;
   color: #666;
