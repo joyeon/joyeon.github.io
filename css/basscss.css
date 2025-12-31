@@ -816,3 +816,15 @@ table td, table th {
   border: 1px solid #ccc;
   cursor: pointer;
 }
+
+.site-description {
+  margin-left: 10px;
+  font-size: smaller;
+  color: #535353;
+  font-style: italic;
+  font-weight: 200;
+}
+
+.site-title {
+  font-weight: 500;
+}
