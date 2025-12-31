@@ -12,14 +12,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{{ site.baseurl }}">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ site.title }}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
     <meta property="og:description" content="{{ site.description }}">
     <meta property="og:image" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="{{ site.domain }}">
     <meta property="twitter:url" content="{{ site.baseurl }}">
-    <meta name="twitter:title" content="{{ site.title }}">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
     <meta name="twitter:description" content="{{ site.description }}">
     <meta name="twitter:image" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}">
 
