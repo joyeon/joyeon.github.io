@@ -2,10 +2,11 @@ excerpt_separator: ""
 pygments: true
 markdown: kramdown
 url: https://joyeon.co
-title: Joyeon
+title: 허송세월
 email: joyeon@gmail.com
-author: Joy Cho
-description: Joy's personal website powered by Jekyll
+author: 조연
+description: 반(半) 자발적 FIRE 상태의 기록
 paginate: 5
 google_analytics: UA-17998259-1
 plugins: [jekyll-paginate]
+
