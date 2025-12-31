@@ -783,6 +783,10 @@ table td, table th {
   margin: 0 !important;
 }
 
+.newsletter-inline .form-container {
+  margin: 0 !important;
+}
+
 .newsletter-inline .mastfoot {
   display: none !important;
 }
