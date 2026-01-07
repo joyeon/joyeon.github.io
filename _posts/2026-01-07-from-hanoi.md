@@ -3,7 +3,7 @@ layout: post
 title:  "01 하노이에서"
 ---
 
-<img src="https://joyeon.co/assets/IMG_9161.jpeg" style="width: 500px; max-width:100%; height:auto;">
+<img src="https://joyeon.co/assets/IMG_9161.jpeg" style="width: 400px; max-width:100%; height:auto;">
 
 
 2026년 1월 7일, 올해의 첫 수요일. 허송세월 블로그를 시작하기로 한 작년 12월 31일로부터 딱 일주일 뒤, 베트남 하노이의 호안끼엠 호수 근처 스타벅스 2층에 앉아 있다. 
