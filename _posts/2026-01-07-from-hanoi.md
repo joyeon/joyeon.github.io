@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "01: 하노이에서"
+title:  "01: 새해 계획은 미뤄둔 채, 하노이에서"
 ---
 
 <img src="https://joyeon.co/assets/IMG_9161.jpeg" style="width: 400px; max-width:100%; height:auto;">
