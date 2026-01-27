@@ -7,11 +7,11 @@ permalink: /about/
 * 조연
 * 대한민국 여성
 * joyeon@gmail.com
-
-<a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> <a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a>
+* <a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> <a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a>
 
 ---
 
+<br />
 20년 가까이 테크 업계에서 제품과 조직을 만들며 일해왔습니다.  
 서울, 런던, 베트남 호치민 등에서 게임, 콘텐츠, 커머스 등 다양한 도메인에서 개발자이자 프로덕트 리더로 일했고, 어느 순간부터는 ‘무엇을 만들 것인가’보다 ‘왜 만들고 있는가’를 더 자주 고민하게 되었습니다.
 
