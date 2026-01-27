@@ -826,3 +826,8 @@ table td, table th {
 .site-title {
   font-weight: 500;
 }
+
+article.post-content {
+  font-family: "Lato" sans-serif;
+  font-weight: 400;
+}
