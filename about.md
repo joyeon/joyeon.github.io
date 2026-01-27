@@ -6,10 +6,7 @@ permalink: /about/
 
 * 조연
 * 대한민국 여성
-* joyeon@gmail.com
 
-
-* <a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> &nbsp; <a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a> &nbsp; <a href="https://twitter.com/iam_yeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-twitter.png" style="width: 32px; height: 32px;" /></a>
 ---
 
 <br />
@@ -27,3 +24,8 @@ permalink: /about/
 생산성과 효율로만 시간을 평가하지 않겠다는 개인적인 선언에 가깝습니다.
 
 혹시 비슷한 질문을 품고 이곳에 오셨다면, 이 글들이 작은 휴식이나 생각의 단서가 되기를 바랍니다.
+
+<a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://twitter.com/iam_yeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-twitter.png" style="width: 32px; height: 32px;" /></a>
+<p>
+  joyeon@gmail.com
+</p>
