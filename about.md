@@ -29,7 +29,9 @@ permalink: /about/
 
 ---
 
-<a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://twitter.com/iam_yeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-twitter.png" style="width: 32px; height: 32px;" /></a>
+<p>
+  <a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a> &nbsp;<a href="https://twitter.com/iam_yeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-twitter.png" style="width: 32px; height: 32px;" /></a>
+</p>
 <p>
   joyeon@gmail.com
 </p>
