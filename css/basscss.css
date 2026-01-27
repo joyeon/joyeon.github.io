@@ -828,6 +828,6 @@ table td, table th {
 }
 
 article.post-content {
-  font-family: "Lato" sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 400;
 }
