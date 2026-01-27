@@ -7,8 +7,8 @@ permalink: /about/
 * 조연
 * 대한민국 여성
 * joyeon@gmail.com
-* <a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a> <a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a>
 
+* <a href="https://www.linkedin.com/in/joyeon" target="_blank"><img src="https://s.magecdn.com/social/64w/mb-linkedin.png" style="width: 32px; height: 32px;" /></a>&nbsp; <a href="https://www.instagram.com/joyeon" target="_blank" class="instagram"><img src="https://s.magecdn.com/social/64w/mb-instagram.png" style="width: 32px; height: 32px;" /></a>&nbsp; <a href="https://twitter.com/iam_yeon target="_blank"><img src="https://s.magecdn.com/social/64w/mb-twitter.png" style="width: 32px; height: 32px;" /></a>
 ---
 
 <br />
