@@ -11,7 +11,7 @@ title:  "05: 딸깍하는 소리 대신"
 
 사무실의 임대 갱신 여부를 고민하던 즈음 각각 삶의 다음 챕터를 고민하고 계신 두 분과 [짧은 베트남 여행](https://joyeon.co/2026/01/07/from-hanoi.html)을 갔다. 닌빈의 숙소에서 사무실을 유지할지 고민이라고 털어놓자 같이 갔던 E님이 구경만 하고 있던 매물이라며 보여준 공간. 이곳이 앞으로 E님과 나의 필요를 만들 공간이 되었다.
 
-<img src="https://joyeon.co/assets/onsil1.jpg" style="width: 400px; max-width:50%; height:auto;" /> <img src="https://joyeon.co/assets/onsil2.jpg" style="width: 400px; max-width:50%; height:auto;" />
+<img src="https://joyeon.co/assets/onsil1.jpg" style="width: 400px; max-width:100%; height:auto;" /> <img src="https://joyeon.co/assets/onsil2.jpg" style="width: 400px; max-width:100%; height:auto;" />
 
 
 올 초 부터 커뮤니티를 뜨겁게 달군 openclaw로 작업 환경을 꾸렸다. openclaw는 쉽게 얘기하면 내 컴퓨터 자원을 쓸 수 있는 AI 도구다. 다만 내가 원하는 메세지 채널을 설정할 수 있는. 사실상 ChatGPT나 Claude 같은 챗 서비스 안에서도 skills, mcp를 통해 openclaw를 통해 할 수 있는 거의 모든 것을 다 할 수 있다. 하지만 사용해보니 내 개인용 컴퓨터 안의 작업 공간, 나에게 익숙한 메세지 채널 — Slack 의 힘이 강력하다 느꼈다. 나에게 익숙한 환경에서 AI와 일하는 방식을 구성할 수 있다는 면에서.
