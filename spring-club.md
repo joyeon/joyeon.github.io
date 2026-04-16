@@ -8,9 +8,9 @@ permalink: /spring-club/
 
 ---
 
-
-<img src="https://joyeon.co/assets/images/springclub.jpg" style="width: 400px; max-width:100%; height:auto; margin: 0 auto;">
+<br />
+<img src="https://joyeon.co/assets/images/springclub.jpg" style="width: 400px; max-width:100%; height:auto; display: block; margin: 0 auto;">
+<br />
 
 
 ---
-
