@@ -2,15 +2,185 @@
 layout: page
 title: 봄동
 permalink: /spring-club/
+summary: "숲이 보이는 작업실, 네 명의 모닥불."
+og_image: /assets/images/spring-club/chair-by-window.jpg
 ---
 
-새 작업실을 얻었습니다. 책상 두개를 놓고도 약간의 여유가 있는 이 공간은 건대의 온실을 커다란 통창으로 마주하는 곳입니다. 저와 이 공간을 공유하고 있는 E님이 무엇이든 시작하는 봄의 느낌을 담아 **봄동** 이라는 이름을 붙여주었어요. **봄 동아리** 라고요. 영어로는 **Spring Club** 입니다.
+<style>
+/* 봄동 랜딩 페이지 전용. 모든 클래스는 sc- 접두사로 이 페이지에만 적용된다. */
 
----
+.sc-subtitle {
+  margin: 0 0 2rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #535353;
+  word-break: keep-all;
+}
 
-<br />
-<img src="https://joyeon.co/assets/images/springclub.jpg" style="width: 400px; max-width:100%; height:auto; display: block; margin: 0 auto;">
-<br />
+/* 창: 사진 사이 5px 간격이 창살. 모바일은 위 1장 + 아래 2x2, 데스크톱은 위 1장 + 아래 4장 한 줄 */
+.sc-window { margin: 0 0 3rem; }
+.sc-window-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+.sc-pane {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+.sc-pane-wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 2;
+}
+.sc-pane img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sc-pane-chair img { object-position: 50% 25%; }
+.sc-pane-greenhouse img { object-position: bottom; }
+.sc-window figcaption {
+  margin-top: .5rem;
+  font-size: .9rem;
+  line-height: 1.4;
+  color: #7a7a7a;
+  text-align: left;
+  word-break: keep-all;
+}
 
+/* 본문: 한글이 단어 중간에서 끊기지 않게 */
+.sc-intro,
+.sc-section { word-break: keep-all; }
+.sc-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: thin solid #eaeaea;
+}
+.sc-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.sc-rules {
+  list-style: none;
+  margin: 0;
+  padding: .5rem 1.25rem;
+  background: #fafafa;
+  border-radius: 6px;
+}
+.sc-rules li {
+  padding: .75rem 0;
+  border-bottom: thin solid #eee;
+}
+.sc-rules li:last-child { border-bottom: none; }
+.sc-muted { color: #7a7a7a; }
+.sc-log { list-style: none; margin: 0; padding-left: 0; }
+.sc-log li { padding: .5rem 0; border-bottom: thin solid #f3f3f3; }
+.sc-log li:last-child { border-bottom: none; }
+.sc-log time,
+.sc-log-next { color: #7a7a7a; }
 
----
+@media screen and (min-width: 48em) {
+  .sc-subtitle { font-size: 1.5rem; }
+  .sc-window-grid { grid-template-columns: repeat(4, 1fr); }
+  .sc-section { margin-top: 4rem; padding-top: 2.5rem; }
+  .sc-section h2 { font-size: 1.5rem; line-height: 2rem; }
+  .sc-rules { padding: .75rem 2rem; }
+  .sc-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+}
+</style>
+
+<p class="sc-subtitle">숲이 보이는 작업실, 네 명의 모닥불.</p>
+
+<figure class="sc-window">
+  <div class="sc-window-grid">
+    <div class="sc-pane sc-pane-wide sc-pane-chair">
+      <img src="{{ site.url }}/assets/images/spring-club/chair-by-window.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/chair-by-window-800.jpg 600w, {{ site.url }}/assets/images/spring-club/chair-by-window.jpg 1200w, {{ site.url }}/assets/images/spring-club/chair-by-window-1600w.jpg 1600w"
+           sizes="(min-width: 48em) 48rem, calc(100vw - 3rem)"
+           width="1200" height="1600" alt="햇빛이 드는 통창 앞 둥근 러그와 의자 하나, 창밖으로 보이는 온실">
+    </div>
+    <div class="sc-pane sc-pane-greenhouse">
+      <img src="{{ site.url }}/assets/images/spring-club/window-greenhouse-800.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/window-greenhouse-800.jpg 632w, {{ site.url }}/assets/images/spring-club/window-greenhouse.jpg 1263w"
+           sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
+           width="1263" height="1600" alt="작업실 창 너머로 올려다본 여름 나무들과 그 아래 온실 지붕">
+    </div>
+    <div class="sc-pane">
+      <img src="{{ site.url }}/assets/images/spring-club/window-leaves-800.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/window-leaves-800.jpg 600w, {{ site.url }}/assets/images/spring-club/window-leaves.jpg 1200w"
+           sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
+           width="1200" height="1600" alt="책상에 앉은 눈높이에서 본 창밖의 초록 잎과 스탠드">
+    </div>
+    <div class="sc-pane">
+      <img src="{{ site.url }}/assets/images/spring-club/squirrel-800.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/squirrel-800.jpg 600w, {{ site.url }}/assets/images/spring-club/squirrel.jpg 1200w"
+           sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
+           width="1200" height="1600" alt="창밖 나뭇가지 위의 청설모">
+    </div>
+    <div class="sc-pane">
+      <img src="{{ site.url }}/assets/images/spring-club/greenhouse-dusk-800.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/greenhouse-dusk-800.jpg 600w, {{ site.url }}/assets/images/spring-club/greenhouse-dusk.jpg 1200w"
+           sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
+           width="1200" height="1600" alt="해 질 녘 창틀 너머로 불이 켜진 온실">
+    </div>
+    {% comment %}캠핑 가구 사진 자리: 사진이 생기면 이 그리드에 넣는다. 아래 줄이 5장이 되면 배치를 다시 잡아야 한다.{% endcomment %}
+  </div>
+  {% comment %}TODO: 캡션 문구 확정 전{% endcomment %}
+  <figcaption>작업실에서 본 창밖, 여름부터 가을까지.</figcaption>
+</figure>
+
+<div class="sc-intro">
+  <p>새 작업실을 얻었습니다. 책상 두개를 놓고도 약간의 여유가 있는 이 공간은 건대의 온실을 커다란 통창으로 마주하는 곳입니다. 저와 이 공간을 공유하고 있는 E님이 무엇이든 시작하는 봄의 느낌을 담아 <strong>봄동</strong> 이라는 이름을 붙여주었어요. <strong>봄 동아리</strong> 라고요. 영어로는 <strong>Spring Club</strong> 입니다.</p>
+  <p>작은 공간이지만 통창 너머가 온실이라, 앉아 있으면 도심인데도 숲에 들어와 있는 기분이 듭니다. 그래서 책상 대신 캠핑 의자와 테이블을 들여놓기로 했습니다. 도심 속 캠핑장입니다.</p>
+</div>
+
+<section class="sc-section">
+  <h2>봄동 캠핑</h2>
+  {% comment %}TODO: 참가비 만 원을 페이지에 둘지, 메일에만 둘지 결정{% endcomment %}
+  <p>한 달에 한 번, 네 명이 모여 한 가지 주제로 이야기합니다. 읽어올 책도, 준비할 발표도 없습니다. 참가비 만 원은 커피와 간식이 됩니다. 한번 다녀가신 분은 명단에 남고, 다음 주제가 정해지면 메일로 알려드립니다. 오고 싶은 날에만 오시면 됩니다.</p>
+</section>
+
+<section class="sc-section">
+  <h2>캠핑 수칙</h2>
+  <ul class="sc-rules">
+    <li>텐트 하나, 네 자리.</li>
+    <li>초대로만 옵니다. 자리가 남으면 한 분까지 데려올 수 있습니다.</li>
+    <li>준비물은 없습니다. 간식 하나는 환영합니다.</li>
+    <li>불은 주제를 낸 사람이 피웁니다.</li>
+    <li>명단은 메일로만. 단톡방은 없습니다.</li>
+    <li>모임이 끝나면 다음 장작 하나를 남깁니다.</li>
+    <li>호스트 포함 세 명이면 엽니다.</li>
+  </ul>
+</section>
+
+<section class="sc-section">
+  <h2>장작</h2>
+  {% comment %}TODO: 장작 기록을 공개 페이지에 쌓을지 결정{% endcomment %}
+  <p class="sc-muted">첫 번째 장작은 11월에 피웁니다.</p>
+  {% comment %}
+  모임 기록이 생기면 아래 목록을 주석 밖으로 꺼내 쓴다. 최근 모임을 위에 둔다. 참여자 이름은 넣지 않는다.
+  <ul class="sc-log">
+    <li><time datetime="2026-11-00">2026.11.00</time> — <span class="sc-log-topic">주제</span> — <span class="sc-log-next">남긴 장작</span></li>
+  </ul>
+  {% endcomment %}
+</section>
+
+<div class="sc-pair">
+  <section class="sc-section">
+    <h2>오는 길</h2>
+    <p>건대입구역 근처입니다. 주소는 초대 메일에 담아 보내드립니다.</p>
+  </section>
+  <section class="sc-section">
+    <h2>입구</h2>
+    <p>봄동은 다녀간 분이 한 분을 데려오는 방식으로 넓어집니다. 그게 입구입니다.</p>
+  </section>
+</div>

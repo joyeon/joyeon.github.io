@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description | strip_html }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
-    <meta name="description" content="{{ site.description }}">
+    <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{{ site.baseurl }}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
-    <meta property="og:description" content="{{ site.description }}">
-    <meta property="og:image" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}" />
+    <meta property="og:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}">
     <meta property="twitter:domain" content="{{ site.domain }}">
     <meta property="twitter:url" content="{{ site.baseurl }}">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
-    <meta name="twitter:description" content="{{ site.description }}">
-    <meta name="twitter:image" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}">
+    <meta name="twitter:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}">
 
     {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
