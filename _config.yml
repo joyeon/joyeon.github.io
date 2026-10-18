@@ -5,7 +5,9 @@ url: https://joyeon.co
 title: 허송세월
 email: joyeon@gmail.com
 author: 조연
-description: 반(半) 자발적 FIRE 상태의 기록
+# tagline: 헤더 부제 / description: 메타 description, og·twitter 설명, RSS 기본값
+tagline: 쓸모없어 보이는 시간의 기록
+description: "20년간 조직 안에서 제품과 팀을 만들었고, 지금은 조직 밖에서 일의 의미와 지속 가능한 삶을 다시 설계하는 중입니다."
 paginate: 5
 google_analytics: UA-17998259-1
 plugins: [jekyll-paginate, jekyll-redirect-from]

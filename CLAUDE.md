@@ -39,6 +39,7 @@ LC_ALL=en_US.UTF-8 bundle exec jekyll build    # _site/ 생성만
 
 - **레이아웃 체인**: `post.html`, `page.html` → `default.html`. `default.html`이 `<head>` 전체(meta, OG/Twitter 태그, CSS, Google Fonts)와 헤더(사이트 제목, 설명, `navigation.html`), `footer.html`(GA 스크립트 포함)을 인라인으로 갖고 있다. `_includes/head.html`, `header.html`은 빈 파일로 쓰이지 않는다.
 - **`center.html`은 `default.html`을 상속하지 않는** 별도의 전체 HTML 셸이다 (404 전용). head나 헤더를 고칠 때는 두 파일을 모두 확인한다.
+- **사이트 문구**: `_config.yml`의 `tagline`은 헤더 부제, `description`은 메타 description·og/twitter 설명·RSS 채널 설명의 기본값이다. 페이지 front matter의 `summary`가 있으면 그 페이지에서는 `summary`가 description을 대신한다.
 - **뉴스레터 폼**: `_includes/newsletter-inline.html`(EmailOctopus, `eomail5.com` 스크립트)은 `post.html` 하단과 `index.html`에 자동으로 들어간다. 포스트 본문에 직접 넣지 않는다.
 - **홈 / 페이지네이션**: `index.html` + `jekyll-paginate`(`paginate: 5`)로 `/page2/`, `/page3/`…가 만들어진다. jekyll-paginate는 루트 `index.html`에서만 동작하므로 홈 파일을 옮기지 않는다. 목록에는 날짜, 제목, `post.summary`가 나온다. `excerpt_separator: ""`로 자동 발췌가 꺼져 있고 현재 `summary`를 가진 포스트가 없어서 실제로는 제목만 보인다. 포스트에 `summary:`를 넣으면 목록과 `<meta name="description">`에 쓰인다.
 - **상단 메뉴**: `_includes/navigation.html`에 링크가 하드코딩되어 있다 (About, 봄동). 독립 페이지(`layout: page` + `permalink: /slug/`, 예: `spring-camp.md`)를 추가하면 여기에 직접 링크를 넣어야 한다.
@@ -90,5 +91,5 @@ LC_ALL=en_US.UTF-8 bundle exec jekyll build    # _site/ 생성만
 - `_config.yml`의 `pygments: true`는 deprecated다 (경고만 나고 동작에는 지장 없음).
 - `google_analytics: UA-…`는 2023년에 종료된 Universal Analytics라 실제로는 수집되지 않는다.
 - `default.html`: `og:url`이 빈 값인 `site.baseurl`을 쓰고, `og:image`는 상대 경로이며, `twitter:card`에 이미지 경로가 들어가 있다.
-- `center.html`은 Google Fonts를 `http://`로 불러온다. footer의 저작권 연도는 `2022©`로 하드코딩되어 있다.
+- `center.html`은 Google Fonts를 `http://`로 불러온다.
 - `assets/hanoi.jpeg`는 2바이트짜리 빈 파일이고, `assets/test.html`은 용도를 알 수 없는 OG 테스트 파일이다.
