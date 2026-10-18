@@ -41,7 +41,7 @@ LC_ALL=en_US.UTF-8 bundle exec jekyll build    # _site/ 생성만
 - **`center.html`은 `default.html`을 상속하지 않는** 별도의 전체 HTML 셸이다 (404 전용). head나 헤더를 고칠 때는 두 파일을 모두 확인한다.
 - **뉴스레터 폼**: `_includes/newsletter-inline.html`(EmailOctopus, `eomail5.com` 스크립트)은 `post.html` 하단과 `index.html`에 자동으로 들어간다. 포스트 본문에 직접 넣지 않는다.
 - **홈 / 페이지네이션**: `index.html` + `jekyll-paginate`(`paginate: 5`)로 `/page2/`, `/page3/`…가 만들어진다. jekyll-paginate는 루트 `index.html`에서만 동작하므로 홈 파일을 옮기지 않는다. 목록에는 날짜, 제목, `post.summary`가 나온다. `excerpt_separator: ""`로 자동 발췌가 꺼져 있고 현재 `summary`를 가진 포스트가 없어서 실제로는 제목만 보인다. 포스트에 `summary:`를 넣으면 목록과 `<meta name="description">`에 쓰인다.
-- **상단 메뉴**: `_includes/navigation.html`에 링크가 하드코딩되어 있다 (About, 봄동). 독립 페이지(`layout: page` + `permalink: /slug/`, 예: `spring-club.md`)를 추가하면 여기에 직접 링크를 넣어야 한다.
+- **상단 메뉴**: `_includes/navigation.html`에 링크가 하드코딩되어 있다 (About, 봄동). 독립 페이지(`layout: page` + `permalink: /slug/`, 예: `spring-camp.md`)를 추가하면 여기에 직접 링크를 넣어야 한다.
 - **RSS**: `feed.xml`은 직접 작성한 템플릿이다 (최근 10개, 본문 전체). `jekyll-feed`는 github-pages에 포함되어 있지만 `_config.yml`의 `plugins:`에 없어서 비활성이다. 켜면 `feed.xml`과 충돌한다.
 - **CSS**: Sass 없이 순수 CSS다. `css/pixyll.css`는 테마 원본이다. 이 블로그의 커스텀 스타일(뉴스레터 폼, `.site-title`/`.site-description`, 본문 Lato 400)은 `css/basscss.css` **맨 아래**에 추가되어 있다. `solarized-light.css`는 어디에도 링크되어 있지 않다.
 
