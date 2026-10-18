@@ -67,18 +67,29 @@ og_url: /spring-camp/
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+/* 캠프 수칙: 왼쪽 2.5rem 열에 CSS로 만든 번호(01~07), 오른쪽에 문장. 첫 문장 뒤는 .note로 옅게 */
 .sc-rules {
   list-style: none;
-  margin: 0;
-  padding: .5rem 1.25rem;
-  background: #fafafa;
-  border-radius: 6px;
+  margin: 0 0 1rem;
+  padding: 0;
+  counter-reset: sc-rule;
 }
 .sc-rules li {
-  padding: .75rem 0;
-  border-bottom: thin solid #eee;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  line-height: 1.7;
+  counter-increment: sc-rule;
 }
-.sc-rules li:last-child { border-bottom: none; }
+.sc-rules li + li { margin-top: .9em; }
+.sc-rules li::before {
+  content: counter(sc-rule, decimal-leading-zero);
+  align-self: start;
+  font-size: .8em;
+  line-height: 2.125; /* 1.7 / 0.8: 첫 줄과 같은 높이로 맞춘다 */
+  color: #7a7a7a;
+  font-variant-numeric: tabular-nums;
+}
+.sc-rules .note { color: #767676; }
 .sc-muted { color: #7a7a7a; }
 .sc-log { list-style: none; margin: 0; padding-left: 0; }
 .sc-log li { padding: .5rem 0; border-bottom: thin solid #f3f3f3; }
@@ -91,7 +102,6 @@ og_url: /spring-camp/
   .sc-window-grid { grid-template-columns: repeat(4, 1fr); }
   .sc-section { margin-top: 4rem; padding-top: 2.5rem; }
   .sc-section h2 { font-size: 1.5rem; line-height: 2rem; }
-  .sc-rules { padding: .75rem 2rem; }
   .sc-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -141,40 +151,40 @@ og_url: /spring-camp/
 </figure>
 
 <div class="sc-intro">
-  <p>새 작업실을 얻었습니다. 책상 두개를 놓고도 약간의 여유가 있는 이 공간은 건대의 온실을 커다란 통창으로 마주하는 곳입니다. 저와 이 공간을 공유하고 있는 E님이 무엇이든 시작하는 봄의 느낌을 담아 <strong>봄동</strong> 이라는 이름을 붙여주었어요. <strong>봄 동아리</strong> 라고요. 영어로는 <strong>Spring Club</strong> 입니다.</p>
-  <p>작은 공간이지만 통창 너머가 온실이라, 도심 한가운데서도 숲에 들어와 있는 기분이 듭니다. 혼자 쓰기엔 아까운 이 공간을 어떻게 나눌까 고민하다 제가 좋아하는 캠핑을 떠올렸습니다.</p>
-  <p>작은 화롯대를 가운데 두고 둘러앉아 나눈 이야기는 일상으로 돌아온 뒤에도 한 번씩 떠오릅니다. 그런 시간과 공간을 여기서 만들어 보고 싶었습니다.</p>
+  <p>올 봄에 새 작업실을 얻었습니다. 책상 두개를 놓고 약간의 여유가 있는 이 공간은 식물로 가득한 온실을 커다란 통창으로 마주하는 곳입니다. 저와 이 공간을 공유하고 있는 E님이 무엇이든 시작하는 봄의 느낌을 담아 <strong>봄동</strong>이라는 이름을 붙여주었어요. <strong>봄 동아리</strong>, 영어로는 <strong>Spring Club</strong>입니다.</p>
+  <p>작은 공간이지만 통창 너머가 온실이라 도심 한가운데서도 숲에 들어와 있는 기분이 들어요. 혼자 누리기는 아까운 이 공간을 어떻게 나눌까 고민하다 제가 좋아하는 캠핑을 떠올렸습니다.</p>
+  <p>작은 화롯대를 가운데 두고 둘러앉아 나지막이 나눈 대화는 일상으로 돌아온 뒤에도 한 번씩 떠오릅니다. 그런 시간과 공간을 여기서 만들 수 있으면 좋을 것 같아요.</p>
 </div>
 
 <section class="sc-section">
   <h2>왜 작은 모임인가</h2>
-  <p>그동안 독서 모임의 클럽장을 맡기도 했고, 커피챗으로 정말 많은 분을 만났습니다. 고민을 듣고 경험을 나누고 돌아오는 길은 늘 좋았습니다. 그런데 아쉬움도 늘 같았습니다. 대화가 좋았는데도 다음으로 이어지지 않았고, 사람이 많으면 깊은 얘기까지 가지 못했고, 읽어 와야 할 책이 있으면 가기 전부터 숙제 같았고, 멤버와 날짜가 정해진 모임은 한두 명이 빠지기 시작하면 흐지부지됐습니다.</p>
-  <p>요즘은 일의 많은 부분을 AI와 함께 합니다. 혼자서도 꽤 많은 일이 되는 시대라, 거꾸로 사람과 마주 앉는 시간이 더 귀해졌습니다. 그래서 작게, 가볍게, 오래 가는 모임을 만들어 보기로 했습니다.</p>
-  <p>네 명이면 모두가 말할 수 있고, 준비물이 없으면 오기 쉽고, 매번 새로 모이면 빠져도 미안하지 않습니다.</p>
+  <p>그동안 독서 모임의 클럽장을 맡기도 했고, 커피챗으로 정말 많은 분을 만났습니다. 고민을 듣고 경험을 나누고 돌아오는 길은 늘 좋았어요. 그런데 아쉬움도 늘 같았습니다. 대화가 좋았는데도 다음으로 이어지지 않았고, 사람이 많으면 깊은 얘기까지 가지 못했고, 읽어 와야 할 책이 있으면 가기 전부터 숙제 같았고, 멤버와 날짜가 정해진 모임은 한두 명이 빠지기 시작하면 흐지부지됐습니다.</p>
+  <p>요즘은 일의 많은 부분을 AI와 함께 합니다. 혼자서도 꽤 많은 일이 되는 시대라, 거꾸로 사람과 마주 앉는 시간이 더 귀해졌습니다. 늘 조직 안에서 일해 온 저는 요즘 그걸 누구보다 크게 느낍니다. 그래서 작게, 가볍게, 오래 가는 모임을 만들어 보기로 했습니다.</p>
+  <p>네 명이면 모두가 말할 수 있고, 준비물이 없으면 오기 쉽고, 매번 새로 모이면 빠져도 미안하지 않겠지요.</p>
 </section>
 
 <section class="sc-section">
   <h2>봄동 캠프</h2>
-  <p>한 달에 한 번, 네 명이 모여 한 가지 주제로 이야기합니다. 읽어올 책도, 준비할 발표도 없습니다. 한번 다녀가신 분은 명단에 남고, 다음 주제가 정해지면 메일로 알려드립니다. 오고 싶은 날에만 오시면 됩니다.</p>
+  <p>한 달에 한 번쯤, 네 명이 모여 한 가지 주제로 이야기합니다. 읽어올 책도, 준비할 발표도 없습니다. 한번이라도 다녀가신 분은 메일링 리스트에 모시고, 다음 주제가 정해지면 메일로 알려드립니다. 오고 싶은 날에만 오시면 됩니다.</p>
 </section>
 
 <section class="sc-section">
   <h2>캠프 수칙</h2>
-  <ul class="sc-rules">
-    <li>텐트 하나, 네 자리.</li>
-    <li>초대로만 옵니다. 자리가 남으면 한 분까지 데려올 수 있습니다.</li>
-    <li>준비물은 없습니다. 간식 하나는 환영합니다.</li>
-    <li>불은 주제를 낸 사람이 피웁니다.</li>
-    <li>명단은 메일로만. 단톡방은 없습니다.</li>
-    <li>모임이 끝나면 다음 장작 하나를 남깁니다.</li>
-    <li>호스트 포함 세 명이면 엽니다.</li>
-  </ul>
+  <ol class="sc-rules" role="list">
+    <li><span>모닥불 하나, 네 자리.</span></li>
+    <li><span>초대로만 옵니다. <span class="note">자리가 남으면 한 분까지 데려올 수 있습니다.</span></span></li>
+    <li><span>준비물은 없습니다. <span class="note">가벼운 간식과 커피를 위한 소액의 참가비가 있습니다.</span></span></li>
+    <li><span>불은 주제를 낸 사람이 피웁니다.</span></li>
+    <li><span>모임 소식은 메일로만. <span class="note">단톡방은 없습니다.</span></span></li>
+    <li><span>모임이 끝나면 다음 장작 하나를 남깁니다.</span></li>
+    <li><span>호스트 포함 세 명이면 엽니다.</span></li>
+  </ol>
 </section>
 
 <section class="sc-section">
   <h2>장작</h2>
   {% comment %}TODO: 장작 기록을 공개 페이지에 쌓을지 결정{% endcomment %}
-  <p class="sc-muted">첫 번째 장작은 11월에 피웁니다.</p>
+  <p class="sc-muted">첫 번째 장작은 2026년 11월에 피웁니다.</p>
   {% comment %}
   모임 기록이 생기면 아래 목록을 주석 밖으로 꺼내 쓴다. 최근 모임을 위에 둔다. 참여자 이름은 넣지 않는다.
   <ul class="sc-log">
@@ -185,7 +195,7 @@ og_url: /spring-camp/
 
 <div class="sc-pair">
   <section class="sc-section">
-    <h2>오는 길</h2>
+    <h2>캠프 위치</h2>
     <p>건대입구역 근처입니다. 주소는 초대 메일에 담아 보내드립니다.</p>
   </section>
   <section class="sc-section">
