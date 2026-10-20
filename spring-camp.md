@@ -6,6 +6,7 @@ redirect_from: /spring-club/
 summary: "숲이 보이는 작업실, 네 명의 모닥불."
 og_image: /assets/images/spring-club/chair-by-window.jpg
 og_url: /spring-camp/
+show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다시 보인다
 ---
 
 <style>
@@ -181,6 +182,7 @@ og_url: /spring-camp/
   </ol>
 </section>
 
+{% if page.show_firewood %}
 <section class="sc-section">
   <h2>장작</h2>
   {% comment %}TODO: 장작 기록을 공개 페이지에 쌓을지 결정{% endcomment %}
@@ -192,6 +194,7 @@ og_url: /spring-camp/
   </ul>
   {% endcomment %}
 </section>
+{% endif %}
 
 <div class="sc-pair">
   <section class="sc-section">
