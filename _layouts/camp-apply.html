@@ -1,0 +1,292 @@
+---
+layout: page
+noindex: true
+---
+{% comment %}
+봄동 캠프 모임별 신청 페이지. spring-camp/YYYY-MM.md의 front matter로 내용이 정해진다.
+제출하면 _config.yml의 camp_form_endpoint(Google Apps Script, _scripts/spring-camp-apply.gs)로 보내져
+구글 시트의 camp_id 탭에 한 줄로 쌓인다. 메뉴와 봄동 페이지에는 링크하지 않고 메일로만 알린다.
+
+  camp_id    시트 탭 이름 (예: "2026-11"). 모임마다 다르게
+  topic      주제
+  when       일시 (자유 형식, 예: "11월 14일(금) 저녁 7시")
+  deadline   신청 마감일 YYYY-MM-DD. 이 날이 지나면(한국 시간 자정) 폼이 저절로 닫힌다
+  closed     true면 마감일과 상관없이 폼을 닫는다
+  questions  기본 항목(이름, 이메일, 링크드인) 아래에 붙는 추가 질문
+    - label: 질문 문구. 시트의 열 이름이 되므로 한 모임 안에서 겹치지 않게
+      type: text | textarea | radio | checkbox (생략하면 text)
+      options: [보기1, 보기2]  # radio, checkbox일 때
+      required: true          # 생략하면 선택 항목
+      hint: 보조 설명         # 생략 가능
+본문(front matter 아래)은 모임 정보와 폼 사이에 나온다.
+{% endcomment %}
+<style>
+/* 봄동 신청 페이지 전용. 모든 클래스는 sa- 접두사로 이 레이아웃에만 적용된다. */
+.sa-meta { margin: 0 0 2rem; word-break: keep-all; }
+.sa-meta div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  padding: .4rem 0;
+  border-bottom: thin solid #f3f3f3;
+}
+.sa-meta dt { color: #7a7a7a; }
+.sa-meta dd { margin: 0; }
+
+.sa-notice,
+.sa-closed,
+.sa-done {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  background: #fafafa;
+  border-left: 3px solid #ddd;
+  word-break: keep-all;
+}
+
+.sa-form { margin-top: 2.5rem; word-break: keep-all; }
+.sa-field { margin: 0 0 1.75rem; padding: 0; border: 0; min-width: 0; }
+.sa-field > label,
+.sa-field legend {
+  display: block;
+  margin-bottom: .4rem;
+  padding: 0;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.sa-opt { font-weight: 400; color: #7a7a7a; }
+.sa-hint {
+  margin: -.2rem 0 .5rem;
+  font-size: .9rem;
+  line-height: 1.5;
+  color: #7a7a7a;
+}
+.sa-form input[type="text"],
+.sa-form input[type="email"],
+.sa-form textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: .6rem .75rem;
+  font: inherit;
+  line-height: 1.5;
+  color: #333;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0;
+}
+.sa-form textarea { min-height: 8rem; resize: vertical; }
+.sa-form input:focus,
+.sa-form textarea:focus {
+  outline: none;
+  border-color: #333;
+}
+.sa-form .sa-choice {
+  display: flex;
+  gap: .5rem;
+  align-items: baseline;
+  margin: .3rem 0;
+  font-weight: 400;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.sa-consent {
+  margin: 2.5rem 0 1.5rem;
+  padding: 1rem 1.25rem;
+  border: thin solid #eaeaea;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: #535353;
+}
+.sa-consent legend { padding: 0 .25rem; font-weight: 700; color: #333; }
+.sa-consent ul { margin: 0 0 .5rem; padding-left: 1.1rem; font-size: inherit; }
+.sa-consent li,
+.sa-consent p { margin: 0 0 .75rem; font-size: inherit; font-weight: inherit; line-height: inherit; color: inherit; }
+.sa-consent li { margin: 0; }
+.sa-consent .sa-choice { color: #333; font-size: 1rem; }
+
+.sa-submit {
+  padding: .7rem 2rem;
+  font: inherit;
+  color: #fff;
+  background: #333;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.sa-submit:hover { background: #000; }
+.sa-submit:disabled { opacity: .5; cursor: default; }
+.sa-status { margin: 1rem 0 0; min-height: 1.95rem; color: #535353; }
+
+/* 스팸 봇용 숨은 칸 */
+.sa-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+
+{% assign days = "일,월,화,수,목,금,토" | split: "," %}
+<dl class="sa-meta">
+  {% if page.topic %}<div><dt>주제</dt><dd>{{ page.topic }}</dd></div>{% endif %}
+  {% if page.when %}<div><dt>일시</dt><dd>{{ page.when }}</dd></div>{% endif %}
+  <div><dt>장소</dt><dd>건대입구역 근처 봄동 작업실</dd></div>
+  {% if page.deadline %}
+  {% assign wd = page.deadline | date: "%w" | plus: 0 %}
+  <div><dt>신청 마감</dt><dd>{{ page.deadline | date: "%-m월 %-d일" }}({{ days[wd] }})</dd></div>
+  {% endif %}
+</dl>
+
+{{ content }}
+
+<p class="sa-notice">선착순이 아닙니다. 마감까지 신청을 모두 받은 뒤, 참석이 확정되면 메일로 안내드립니다.<br>
+이번 캠프에 참석하지 못하시더라도 이후 캠프가 열릴 때 알려드릴게요.</p>
+
+{% assign sa_endpoint = site.camp_form_endpoint | default: "" %}
+{% if page.closed %}
+<p class="sa-closed">신청이 마감되었습니다.</p>
+{% elsif sa_endpoint == "" and jekyll.environment != "development" %}
+<p class="sa-closed">신청 폼을 준비하고 있습니다. (<code>_config.yml</code>의 <code>camp_form_endpoint</code>가 비어 있음)</p>
+{% else %}
+{% comment %}로컬(jekyll serve)에서는 endpoint가 비어 있어도 폼을 보여준다. 전송은 실패한다.{% endcomment %}
+{% if sa_endpoint == "" %}<p class="sa-closed">로컬 미리보기: <code>camp_form_endpoint</code>가 비어 있어 신청서가 전송되지 않습니다.</p>{% endif %}
+<p class="sa-closed" id="sa-closed" hidden>신청이 마감되었습니다.</p>
+<p class="sa-done" id="sa-done" tabindex="-1" hidden>신청서를 받았습니다. 마감 후 메일로 연락드릴게요.</p>
+
+<form class="sa-form" id="sa-form"
+      data-endpoint="{{ sa_endpoint }}"
+      data-camp="{{ page.camp_id }}"
+      data-deadline="{% if page.deadline %}{{ page.deadline | date: "%Y-%m-%d" }}{% endif %}">
+
+  <div class="sa-field" data-label="이름">
+    <label for="sa-name">이름</label>
+    <input type="text" id="sa-name" autocomplete="name" maxlength="100" required>
+  </div>
+
+  <div class="sa-field" data-label="이메일">
+    <label for="sa-email">이메일</label>
+    <p class="sa-hint" id="sa-email-hint">초대 메일을 받으실 주소입니다.</p>
+    <input type="email" id="sa-email" autocomplete="email" maxlength="200" aria-describedby="sa-email-hint" required>
+  </div>
+
+  <div class="sa-field" data-label="링크드인">
+    <label for="sa-linkedin">링크드인 프로필</label>
+    <input type="text" id="sa-linkedin" inputmode="url" autocomplete="url" maxlength="300" placeholder="https://www.linkedin.com/in/..." required>
+  </div>
+
+  {% for q in page.questions %}
+  {% assign qid = "sa-q" | append: forloop.index %}
+  {% assign qtype = q.type | default: "text" %}
+  {% if qtype == "radio" or qtype == "checkbox" %}
+  <fieldset class="sa-field" data-label="{{ q.label | escape }}"{% if q.required and qtype == "checkbox" %} data-required{% endif %}>
+    <legend>{{ q.label }}{% unless q.required %} <span class="sa-opt">(선택)</span>{% endunless %}</legend>
+    {% if q.hint %}<p class="sa-hint">{{ q.hint }}</p>{% endif %}
+    {% for opt in q.options %}
+    <label class="sa-choice"><input type="{{ qtype }}" name="{{ qid }}" value="{{ opt | escape }}"{% if q.required and qtype == "radio" %} required{% endif %}> <span>{{ opt }}</span></label>
+    {% endfor %}
+  </fieldset>
+  {% else %}
+  <div class="sa-field" data-label="{{ q.label | escape }}">
+    <label for="{{ qid }}">{{ q.label }}{% unless q.required %} <span class="sa-opt">(선택)</span>{% endunless %}</label>
+    {% if q.hint %}<p class="sa-hint" id="{{ qid }}-hint">{{ q.hint }}</p>{% endif %}
+    {% if qtype == "textarea" %}
+    <textarea id="{{ qid }}" rows="5" maxlength="5000"{% if q.hint %} aria-describedby="{{ qid }}-hint"{% endif %}{% if q.required %} required{% endif %}></textarea>
+    {% else %}
+    <input type="text" id="{{ qid }}" maxlength="1000"{% if q.hint %} aria-describedby="{{ qid }}-hint"{% endif %}{% if q.required %} required{% endif %}>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}
+
+  <div class="sa-hp" aria-hidden="true">
+    <label>웹사이트 <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+  </div>
+
+  <fieldset class="sa-consent">
+    <legend>개인정보 수집·이용 안내</legend>
+    <ul>
+      <li>수집 항목: 이름, 이메일, 링크드인 주소, 위 질문에 대한 답변</li>
+      <li>이용 목적: 참가자 선정과 연락, 이후 봄동 캠프 소식 메일 발송</li>
+      <li>보유 기간: 신청 내용은 해당 모임이 끝나면 삭제합니다. 다만 이름과 이메일은 봄동 메일링 리스트로 옮겨, 구독을 해지하실 때까지 보관합니다. 아래에서 “이후의 모임 안내는 괜찮아요”를 고르신 분은 옮기지 않습니다.</li>
+    </ul>
+    <p>동의하지 않으셔도 되지만, 그 경우 신청하실 수 없습니다.</p>
+    <div data-label="개인정보 수집·이용 동의">
+      <label class="sa-choice"><input type="checkbox" value="동의" required> <span>위 내용에 동의합니다.</span></label>
+    </div>
+    {% comment %}체크하면 시트의 "이후 모임 안내" 열에 "받지 않음"이 들어간다. 비어 있으면 봄동 리스트에 추가하는 대상{% endcomment %}
+    <div data-label="이후 모임 안내">
+      <label class="sa-choice"><input type="checkbox" value="받지 않음"> <span>이후의 모임 안내는 괜찮아요.</span></label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="sa-submit">신청하기</button>
+  <p class="sa-status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+(function () {
+  var form = document.getElementById('sa-form');
+  var closed = document.getElementById('sa-closed');
+  var done = document.getElementById('sa-done');
+  var status = form.querySelector('.sa-status');
+  var button = form.querySelector('.sa-submit');
+
+  // 마감일 자정(한국 시간)이 지나면 폼을 닫는다
+  var deadline = form.getAttribute('data-deadline');
+  if (deadline && new Date() > new Date(deadline + 'T23:59:59+09:00')) {
+    form.hidden = true;
+    closed.hidden = false;
+    return;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // 체크박스 묶음은 브라우저 기본 검증이 없어서 직접 확인한다
+    var groups = form.querySelectorAll('fieldset[data-required]');
+    for (var i = 0; i < groups.length; i++) {
+      if (!groups[i].querySelector('input:checked')) {
+        status.textContent = '“' + groups[i].getAttribute('data-label') + '”에서 하나 이상 골라 주세요.';
+        groups[i].querySelector('input').focus();
+        return;
+      }
+    }
+
+    // data-label 단위로 [질문, 답] 쌍을 폼 순서대로 모은다. 여러 개 고른 답은 쉼표로 잇는다
+    var fields = [];
+    var wrappers = form.querySelectorAll('[data-label]');
+    for (var j = 0; j < wrappers.length; j++) {
+      var values = [];
+      var inputs = wrappers[j].querySelectorAll('input, textarea');
+      for (var k = 0; k < inputs.length; k++) {
+        var input = inputs[k];
+        if ((input.type === 'radio' || input.type === 'checkbox') && !input.checked) continue;
+        if (input.value.trim()) values.push(input.value.trim());
+      }
+      fields.push([wrappers[j].getAttribute('data-label'), values.join(', ')]);
+    }
+
+    var payload = {
+      camp: form.getAttribute('data-camp'),
+      name: document.getElementById('sa-name').value,
+      email: document.getElementById('sa-email').value,
+      website: form.elements.namedItem('website').value,
+      fields: fields
+    };
+
+    button.disabled = true;
+    status.textContent = '보내는 중입니다…';
+
+    fetch(form.getAttribute('data-endpoint'), {
+      method: 'POST',
+      body: new URLSearchParams({ payload: JSON.stringify(payload) })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.error);
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      })
+      .catch(function () {
+        button.disabled = false;
+        status.textContent = '신청서를 보내지 못했습니다. 잠시 후 다시 시도하시거나 {{ site.email }} 으로 보내주세요.';
+      });
+  });
+})();
+</script>
+{% endif %}

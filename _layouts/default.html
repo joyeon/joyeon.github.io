@@ -25,6 +25,7 @@
 
     {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    {% if page.noindex or layout.noindex %}<meta name="robots" content="noindex">{% endif %}
     
 
     <!-- Custom CSS -->

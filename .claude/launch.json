@@ -6,6 +6,12 @@
       "runtimeExecutable": "/usr/bin/env",
       "runtimeArgs": ["LC_ALL=en_US.UTF-8", "bundle", "exec", "jekyll", "serve", "--port", "4000"],
       "port": 4000
+    },
+    {
+      "name": "jekyll-unpublished",
+      "runtimeExecutable": "/usr/bin/env",
+      "runtimeArgs": ["LC_ALL=en_US.UTF-8", "bundle", "exec", "jekyll", "serve", "--port", "4001", "--unpublished"],
+      "port": 4001
     }
   ]
 }

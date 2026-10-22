@@ -11,6 +11,9 @@ description: "20년간 조직 안에서 제품과 팀을 만들었고, 지금은
 paginate: 5
 google_analytics: UA-17998259-1
 plugins: [jekyll-paginate, jekyll-redirect-from]
+# 봄동 캠프 신청 폼이 보내는 Google Apps Script 웹 앱 URL. 설치 방법은 _scripts/spring-camp-apply.gs 참고
+camp_form_endpoint: "https://script.google.com/macros/s/AKfycbxR85LaNw4Dz2XFNlqRd5q1pvVYJSN0AjR4y3J_-ZWGOewT0zrvPvCCvryOrKoysAZoZQ/exec"
 # exclude를 지정하면 Jekyll/github-pages 기본 제외 목록(Gemfile, vendor, CNAME 등)을 덮어쓰므로 함께 적는다
+# 배포 ID : AKfycbxR85LaNw4Dz2XFNlqRd5q1pvVYJSN0AjR4y3J_-ZWGOewT0zrvPvCCvryOrKoysAZoZQ
 exclude: [CLAUDE.md, CNAME, Gemfile, Gemfile.lock, vendor]
 
