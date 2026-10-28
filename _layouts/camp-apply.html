@@ -3,22 +3,26 @@ layout: page
 noindex: true
 ---
 {% comment %}
-봄동 캠프 모임별 신청 페이지. spring-camp/YYYY-MM.md의 front matter로 내용이 정해진다.
+봄동 캠프 캠프별 신청 페이지. spring-camp/YYYY-MM.md의 front matter로 내용이 정해진다.
 제출하면 _config.yml의 camp_form_endpoint(Google Apps Script, _scripts/spring-camp-apply.gs)로 보내져
 구글 시트의 camp_id 탭에 한 줄로 쌓인다. 메뉴와 봄동 페이지에는 링크하지 않고 메일로만 알린다.
 
-  camp_id    시트 탭 이름 (예: "2026-11"). 모임마다 다르게
+  camp_id    시트 탭 이름 (예: "2026-11"). 캠프마다 다르게
   topic      주제
   when       일시 (자유 형식, 예: "11월 14일(금) 저녁 7시")
+  where      장소. 생략하면 "건대입구역 근처 봄동 작업실"
+  where_url  장소 옆에 붙는 지도 링크 (생략 가능)
+  notice     폼 위 안내 문구. 생략하면 "선착순이 아닙니다…" 기본 문구
+  done       제출 후 폼 자리에 나오는 문구. 생략하면 "신청서를 받았습니다. 마감 후 메일로 연락드릴게요."
   deadline   신청 마감일 YYYY-MM-DD. 이 날이 지나면(한국 시간 자정) 폼이 저절로 닫힌다
   closed     true면 마감일과 상관없이 폼을 닫는다
   questions  기본 항목(이름, 이메일, 링크드인) 아래에 붙는 추가 질문
-    - label: 질문 문구. 시트의 열 이름이 되므로 한 모임 안에서 겹치지 않게
+    - label: 질문 문구. 시트의 열 이름이 되므로 한 캠프 안에서 겹치지 않게
       type: text | textarea | radio | checkbox (생략하면 text)
       options: [보기1, 보기2]  # radio, checkbox일 때
       required: true          # 생략하면 선택 항목
       hint: 보조 설명         # 생략 가능
-본문(front matter 아래)은 모임 정보와 폼 사이에 나온다.
+본문(front matter 아래)은 캠프 정보와 폼 사이에 나온다.
 {% endcomment %}
 <style>
 /* 봄동 신청 페이지 전용. 모든 클래스는 sa- 접두사로 이 레이아웃에만 적용된다. */
@@ -124,7 +128,7 @@ noindex: true
 <dl class="sa-meta">
   {% if page.topic %}<div><dt>주제</dt><dd>{{ page.topic }}</dd></div>{% endif %}
   {% if page.when %}<div><dt>일시</dt><dd>{{ page.when }}</dd></div>{% endif %}
-  <div><dt>장소</dt><dd>건대입구역 근처 봄동 작업실</dd></div>
+  <div><dt>장소</dt><dd>{% if page.where %}{{ page.where }}{% if page.where_url %} · <a href="{{ page.where_url }}" target="_blank" rel="noopener">지도</a>{% endif %}{% else %}건대입구역 근처 봄동 작업실{% endif %}</dd></div>
   {% if page.deadline %}
   {% assign wd = page.deadline | date: "%w" | plus: 0 %}
   <div><dt>신청 마감</dt><dd>{{ page.deadline | date: "%-m월 %-d일" }}({{ days[wd] }})</dd></div>
@@ -133,8 +137,12 @@ noindex: true
 
 {{ content }}
 
+{% if page.notice %}
+<p class="sa-notice">{{ page.notice }}</p>
+{% else %}
 <p class="sa-notice">선착순이 아닙니다. 마감까지 신청을 모두 받은 뒤, 참석이 확정되면 메일로 안내드립니다.<br>
 이번 캠프에 참석하지 못하시더라도 이후 캠프가 열릴 때 알려드릴게요.</p>
+{% endif %}
 
 {% assign sa_endpoint = site.camp_form_endpoint | default: "" %}
 {% if page.closed %}
@@ -145,7 +153,7 @@ noindex: true
 {% comment %}로컬(jekyll serve)에서는 endpoint가 비어 있어도 폼을 보여준다. 전송은 실패한다.{% endcomment %}
 {% if sa_endpoint == "" %}<p class="sa-closed">로컬 미리보기: <code>camp_form_endpoint</code>가 비어 있어 신청서가 전송되지 않습니다.</p>{% endif %}
 <p class="sa-closed" id="sa-closed" hidden>신청이 마감되었습니다.</p>
-<p class="sa-done" id="sa-done" tabindex="-1" hidden>신청서를 받았습니다. 마감 후 메일로 연락드릴게요.</p>
+<p class="sa-done" id="sa-done" tabindex="-1" hidden>{% if page.done %}{{ page.done }}{% else %}신청서를 받았습니다. 마감 후 메일로 연락드릴게요.{% endif %}</p>
 
 <form class="sa-form" id="sa-form"
       data-endpoint="{{ sa_endpoint }}"
@@ -201,15 +209,15 @@ noindex: true
     <ul>
       <li>수집 항목: 이름, 이메일, 링크드인 주소, 위 질문에 대한 답변</li>
       <li>이용 목적: 참가자 선정과 연락, 이후 봄동 캠프 소식 메일 발송</li>
-      <li>보유 기간: 신청 내용은 해당 모임이 끝나면 삭제합니다. 다만 이름과 이메일은 봄동 메일링 리스트로 옮겨, 구독을 해지하실 때까지 보관합니다. 아래에서 “이후의 모임 안내는 괜찮아요”를 고르신 분은 옮기지 않습니다.</li>
+      <li>보유 기간: 신청 내용은 해당 캠프가 끝나면 삭제합니다. 다만 이름과 이메일은 봄동 메일링 리스트로 옮겨, 구독을 해지하실 때까지 보관합니다. 아래에서 “이후의 캠프 안내는 괜찮아요”를 고르신 분은 옮기지 않습니다.</li>
     </ul>
     <p>동의하지 않으셔도 되지만, 그 경우 신청하실 수 없습니다.</p>
     <div data-label="개인정보 수집·이용 동의">
       <label class="sa-choice"><input type="checkbox" value="동의" required> <span>위 내용에 동의합니다.</span></label>
     </div>
-    {% comment %}체크하면 시트의 "이후 모임 안내" 열에 "받지 않음"이 들어간다. 비어 있으면 봄동 리스트에 추가하는 대상{% endcomment %}
-    <div data-label="이후 모임 안내">
-      <label class="sa-choice"><input type="checkbox" value="받지 않음"> <span>이후의 모임 안내는 괜찮아요.</span></label>
+    {% comment %}체크하면 시트의 "이후 캠프 안내" 열에 "받지 않음"이 들어간다. 비어 있으면 봄동 리스트에 추가하는 대상{% endcomment %}
+    <div data-label="이후 캠프 안내">
+      <label class="sa-choice"><input type="checkbox" value="받지 않음"> <span>이후의 캠프 안내는 괜찮아요.</span></label>
     </div>
   </fieldset>
 
