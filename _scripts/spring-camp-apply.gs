@@ -1,7 +1,8 @@
 /**
  * 봄동 캠프 신청 폼 → Google Sheet
  *
- * joyeon.co/spring-camp/YYYY-MM/ 신청 폼(_layouts/camp-apply.html)이 이 웹 앱으로 POST한다.
+ * joyeon.co/spring-camp/YYYY-MM/ 신청 폼(_layouts/camp-apply.html)과
+ * 익명 피드백 폼(_layouts/camp-feedback.html)이 이 웹 앱으로 POST한다.
  * 모임마다 camp_id 이름의 탭이 생기고, 신청 한 건이 한 줄로 쌓인다.
  * 새 질문이 생기면 맨 오른쪽에 열이 추가된다. 새 신청이 오면 시트 주인에게 알림 메일을 보낸다.
  * (_scripts/는 밑줄로 시작해서 Jekyll 빌드에 포함되지 않는다.)
@@ -102,7 +103,7 @@ function safe_(value) {
 }
 
 function notify_(camp, data, fields) {
-  var name = String(data.name || '').trim() || '(이름 없음)';
+  var name = String(data.name || '').trim();
   var email = String(data.email || '').trim();
   var body = fields.map(function (f) {
     return f[0] + '\n' + (f[1] || '-');
@@ -111,7 +112,8 @@ function notify_(camp, data, fields) {
 
   var message = {
     to: Session.getEffectiveUser().getEmail(),
-    subject: '[봄동 ' + camp + '] 새 신청: ' + name,
+    // 이름이 없으면 익명 피드백이다
+    subject: '[봄동 ' + camp + '] ' + (name ? '새 신청: ' + name : '새 응답'),
     body: body
   };
   // 알림 메일에서 바로 답장하면 신청자에게 가도록

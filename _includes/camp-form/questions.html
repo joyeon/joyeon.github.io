@@ -1,0 +1,24 @@
+  {% comment %}page.questions를 폼 칸으로 그린다. 질문 형식은 _layouts/camp-apply.html 맨 위 참고{% endcomment %}
+  {% for q in page.questions %}
+  {% assign qid = "sa-q" | append: forloop.index %}
+  {% assign qtype = q.type | default: "text" %}
+  {% if qtype == "radio" or qtype == "checkbox" %}
+  <fieldset class="sa-field" data-label="{{ q.label | escape }}"{% if q.required and qtype == "checkbox" %} data-required{% endif %}>
+    <legend>{{ q.label }}{% unless q.required %} <span class="sa-opt">(선택)</span>{% endunless %}</legend>
+    {% if q.hint %}<p class="sa-hint">{{ q.hint }}</p>{% endif %}
+    {% for opt in q.options %}
+    <label class="sa-choice"><input type="{{ qtype }}" name="{{ qid }}" value="{{ opt | escape }}"{% if q.required and qtype == "radio" %} required{% endif %}> <span>{{ opt }}</span></label>
+    {% endfor %}
+  </fieldset>
+  {% else %}
+  <div class="sa-field" data-label="{{ q.label | escape }}">
+    <label for="{{ qid }}">{{ q.label }}{% unless q.required %} <span class="sa-opt">(선택)</span>{% endunless %}</label>
+    {% if q.hint %}<p class="sa-hint" id="{{ qid }}-hint">{{ q.hint }}</p>{% endif %}
+    {% if qtype == "textarea" %}
+    <textarea id="{{ qid }}" rows="5" maxlength="5000"{% if q.hint %} aria-describedby="{{ qid }}-hint"{% endif %}{% if q.required %} required{% endif %}></textarea>
+    {% else %}
+    <input type="text" id="{{ qid }}" maxlength="1000"{% if q.hint %} aria-describedby="{{ qid }}-hint"{% endif %}{% if q.required %} required{% endif %}>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endfor %}

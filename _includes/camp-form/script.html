@@ -1,0 +1,89 @@
+{% comment %}
+camp-apply, camp-feedback 레이아웃이 함께 쓰는 제출 스크립트. sa-form 폼 바로 뒤에 넣는다.
+  failed  전송 실패 문구의 앞 문장 (예: "신청서를 보내지 못했습니다.")
+{% endcomment %}
+<script>
+(function () {
+  var form = document.getElementById('sa-form');
+  var closed = document.getElementById('sa-closed');
+  var done = document.getElementById('sa-done');
+  var status = form.querySelector('.sa-status');
+  var button = form.querySelector('.sa-submit');
+
+  // 마감일 자정(한국 시간)이 지나면 폼을 닫는다
+  var deadline = form.getAttribute('data-deadline');
+  if (deadline && new Date() > new Date(deadline + 'T23:59:59+09:00')) {
+    form.hidden = true;
+    closed.hidden = false;
+    return;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // 체크박스 묶음은 브라우저 기본 검증이 없어서 직접 확인한다
+    var groups = form.querySelectorAll('fieldset[data-required]');
+    for (var i = 0; i < groups.length; i++) {
+      if (!groups[i].querySelector('input:checked')) {
+        status.textContent = '“' + groups[i].getAttribute('data-label') + '”에서 하나 이상 골라 주세요.';
+        groups[i].querySelector('input').focus();
+        return;
+      }
+    }
+
+    // data-label 단위로 [질문, 답] 쌍을 폼 순서대로 모은다. 여러 개 고른 답은 쉼표로 잇는다
+    var fields = [];
+    var wrappers = form.querySelectorAll('[data-label]');
+    for (var j = 0; j < wrappers.length; j++) {
+      var values = [];
+      var inputs = wrappers[j].querySelectorAll('input, textarea');
+      for (var k = 0; k < inputs.length; k++) {
+        var input = inputs[k];
+        if ((input.type === 'radio' || input.type === 'checkbox') && !input.checked) continue;
+        if (input.value.trim()) values.push(input.value.trim());
+      }
+      fields.push([wrappers[j].getAttribute('data-label'), values.join(', ')]);
+    }
+
+    // 필수 항목이 없는 폼(익명 피드백)에서 빈 채로 보내는 것을 막는다
+    var filled = false;
+    for (var m = 0; m < fields.length; m++) {
+      if (fields[m][1]) filled = true;
+    }
+    if (!filled) {
+      status.textContent = '내용을 적어 주세요.';
+      return;
+    }
+
+    // 이름, 이메일 칸은 신청 폼에만 있다
+    var name = document.getElementById('sa-name');
+    var email = document.getElementById('sa-email');
+    var payload = {
+      camp: form.getAttribute('data-camp'),
+      name: name ? name.value : '',
+      email: email ? email.value : '',
+      website: form.elements.namedItem('website').value,
+      fields: fields
+    };
+
+    button.disabled = true;
+    status.textContent = '보내는 중입니다…';
+
+    fetch(form.getAttribute('data-endpoint'), {
+      method: 'POST',
+      body: new URLSearchParams({ payload: JSON.stringify(payload) })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.error);
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      })
+      .catch(function () {
+        button.disabled = false;
+        status.textContent = '{{ include.failed }} 잠시 후 다시 시도하시거나 {{ site.email }} 으로 보내주세요.';
+      });
+  });
+})();
+</script>
