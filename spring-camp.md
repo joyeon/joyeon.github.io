@@ -4,7 +4,7 @@ title: 봄동
 permalink: /spring-camp/
 redirect_from: /spring-club/
 summary: "숲이 보이는 작업실, 네 명의 모닥불."
-og_image: /assets/images/spring-club/chair-by-window.jpg
+og_image: /assets/images/spring-club/camp-chairs.jpg
 og_url: /spring-camp/
 show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다시 보인다
 ---
@@ -44,7 +44,6 @@ show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다�
   height: 100%;
   object-fit: cover;
 }
-.sc-pane-chair img { object-position: 50% 25%; }
 .sc-pane-greenhouse img { object-position: bottom; }
 .sc-window figcaption {
   margin-top: .5rem;
@@ -115,11 +114,11 @@ show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다�
 
 <figure class="sc-window">
   <div class="sc-window-grid">
-    <div class="sc-pane sc-pane-wide sc-pane-chair">
-      <img src="{{ site.url }}/assets/images/spring-club/chair-by-window.jpg"
-           srcset="{{ site.url }}/assets/images/spring-club/chair-by-window-800.jpg 600w, {{ site.url }}/assets/images/spring-club/chair-by-window.jpg 1200w, {{ site.url }}/assets/images/spring-club/chair-by-window-1600w.jpg 1600w"
+    <div class="sc-pane sc-pane-wide">
+      <img src="{{ site.url }}/assets/images/spring-club/camp-chairs.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/camp-chairs-800.jpg 800w, {{ site.url }}/assets/images/spring-club/camp-chairs.jpg 1440w"
            sizes="(min-width: 48em) 48rem, calc(100vw - 3rem)"
-           width="1200" height="1600" alt="햇빛이 드는 통창 앞 둥근 러그와 의자 하나, 창밖으로 보이는 온실">
+           width="1440" height="1080" alt="통창 앞 초록 러그 위, 낮은 캠핑 테이블을 둘러싼 캠핑 의자 네 개와 창밖의 가을 나무">
     </div>
     <div class="sc-pane sc-pane-greenhouse">
       <img src="{{ site.url }}/assets/images/spring-club/window-greenhouse-800.jpg"
@@ -128,10 +127,10 @@ show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다�
            width="1263" height="1600" alt="작업실 창 너머로 올려다본 여름 나무들과 그 아래 온실 지붕">
     </div>
     <div class="sc-pane">
-      <img src="{{ site.url }}/assets/images/spring-club/window-leaves-800.jpg"
-           srcset="{{ site.url }}/assets/images/spring-club/window-leaves-800.jpg 600w, {{ site.url }}/assets/images/spring-club/window-leaves.jpg 1200w"
+      <img src="{{ site.url }}/assets/images/spring-club/desk-reflection-800.jpg"
+           srcset="{{ site.url }}/assets/images/spring-club/desk-reflection-800.jpg 640w, {{ site.url }}/assets/images/spring-club/desk-reflection.jpg 976w"
            sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
-           width="1200" height="1600" alt="책상에 앉은 눈높이에서 본 창밖의 초록 잎과 스탠드">
+           width="976" height="1220" alt="스탠드가 놓인 유리 책상에 비친 창밖의 가을 나무와 온실">
     </div>
     <div class="sc-pane">
       <img src="{{ site.url }}/assets/images/spring-club/squirrel-800.jpg"
@@ -145,7 +144,6 @@ show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다�
            sizes="(min-width: 48em) 12rem, calc(50vw - 2rem)"
            width="1200" height="1600" alt="해 질 녘 창틀 너머로 불이 켜진 온실">
     </div>
-    {% comment %}캠핑 가구 사진 자리: 사진이 생기면 이 그리드에 넣는다. 아래 줄이 5장이 되면 배치를 다시 잡아야 한다.{% endcomment %}
   </div>
   {% comment %}TODO: 캡션 문구 확정 전{% endcomment %}
   <figcaption>작업실에서 본 창밖, 여름부터 가을까지.</figcaption>
