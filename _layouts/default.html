@@ -9,18 +9,20 @@
     <meta name="author" content="{{ site.author }}">
     <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
 
+    {% comment %}링크 공유 미리보기 설명: 페이지·포스트의 summary가 있으면 summary, 없으면 tagline{% endcomment %}
+    {% if page.summary %}{% assign share_description = page.summary %}{% else %}{% assign share_description = site.tagline %}{% endif %}
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{% if page.og_url %}{{ page.og_url | prepend: site.url }}{% else %}{{ site.baseurl }}{% endif %}">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
-    <meta property="og:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:description" content="{{ share_description }}">
     <meta property="og:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}" />
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}">
     <meta property="twitter:domain" content="{{ site.domain }}">
     <meta property="twitter:url" content="{% if page.og_url %}{{ page.og_url | prepend: site.url }}{% else %}{{ site.baseurl }}{% endif %}">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
-    <meta name="twitter:description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="twitter:description" content="{{ share_description }}">
     <meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}">
 
     {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}

@@ -5,7 +5,7 @@ url: https://joyeon.co
 title: 허송세월
 email: joyeon@gmail.com
 author: 조연
-# tagline: 헤더 부제 / description: 메타 description, og·twitter 설명, RSS 기본값
+# tagline: 헤더 부제, og·twitter 설명(링크 공유 미리보기) 기본값 / description: 메타 description, RSS 기본값
 tagline: 쓸모없어 보이는 시간의 기록
 description: "20년간 조직 안에서 제품과 팀을 만들었고, 지금은 조직 밖에서 일의 의미와 지속 가능한 삶을 다시 설계하는 중입니다."
 paginate: 5
