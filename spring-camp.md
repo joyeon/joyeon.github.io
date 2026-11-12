@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 봄동
+title: 봄동 캠프
 permalink: /spring-camp/
 redirect_from: /spring-club/
 summary: "숲이 보이는 작업실, 네 명의 모닥불."
@@ -163,7 +163,7 @@ show_firewood: false  # 장작 섹션: 첫 모임 이후 true로 바꾸면 다�
 </section>
 
 <section class="sc-section">
-  <h2>봄동 캠프</h2>
+  <h2>캠프 방식</h2>
   <p>한 달에 한 번쯤, 네 명이 모여 한 가지 주제로 이야기합니다. 읽어올 책도, 준비할 발표도 없습니다. 한번이라도 다녀가신 분은 메일링 리스트에 모시고, 다음 주제가 정해지면 메일로 알려드립니다. 오고 싶은 날에만 오시면 됩니다.</p>
 </section>
 
