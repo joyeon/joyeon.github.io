@@ -5,28 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description | strip_html }}{% endif %}">
+    {% comment %}검색 결과 설명: summary가 있으면 summary, 없으면 포스트는 본문 앞 120자, 그 밖의 페이지는 site.description{% endcomment %}
+    {% if page.summary %}{% assign meta_description = page.summary %}{% elsif page.collection == "posts" %}{% assign meta_description = page.content | strip_html | normalize_whitespace | truncate: 120, "…" %}{% else %}{% assign meta_description = site.description %}{% endif %}
+    <meta name="description" content="{{ meta_description | strip_html | strip | escape_once }}">
     <meta name="author" content="{{ site.author }}">
-    <meta name="description" content="{% if page.summary %}{{ page.summary }}{% else %}{{ site.description }}{% endif %}">
 
+    {% assign page_url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
+    {% if page.og_url %}{% assign share_url = page.og_url | prepend: site.url %}{% else %}{% assign share_url = page_url %}{% endif %}
+    {% if page.og_image %}{% assign share_image = page.og_image | prepend: site.url %}{% else %}{% assign share_image = "/assets/profile.jpg" | prepend: site.url %}{% endif %}
     {% comment %}링크 공유 미리보기 설명: 페이지·포스트의 summary가 있으면 summary, 없으면 tagline{% endcomment %}
     {% if page.summary %}{% assign share_description = page.summary %}{% else %}{% assign share_description = site.tagline %}{% endif %}
     <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="{% if page.og_url %}{{ page.og_url | prepend: site.url }}{% else %}{{ site.baseurl }}{% endif %}">
-    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ share_url }}">
+    <meta property="og:type" content="{% if page.collection == "posts" %}article{% else %}website{% endif %}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:locale" content="ko_KR">
     <meta property="og:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
     <meta property="og:description" content="{{ share_description }}">
-    <meta property="og:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}" />
+    <meta property="og:image" content="{{ share_image }}" />
+    {% if page.collection == "posts" %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">{% endif %}
     <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="{{ "/assets/profile.jpg" | prepend: site.baseurl }}">
-    <meta property="twitter:domain" content="{{ site.domain }}">
-    <meta property="twitter:url" content="{% if page.og_url %}{{ page.og_url | prepend: site.url }}{% else %}{{ site.baseurl }}{% endif %}">
+    <meta name="twitter:card" content="{% if page.og_image %}summary_large_image{% else %}summary{% endif %}">
+    <meta property="twitter:domain" content="{{ site.url | remove: 'https://' }}">
+    <meta property="twitter:url" content="{{ share_url }}">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }} &#8211; {% endif %}{{ site.title }}">
     <meta name="twitter:description" content="{{ share_description }}">
-    <meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% else %}{{ "/assets/profile.jpg" | prepend: site.baseurl }}{% endif %}">
+    <meta name="twitter:image" content="{{ share_image }}">
 
-    {% if page.categories %}<meta name="keywords" content="{{ page.categories | join: ', ' }}">{% endif %}
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="canonical" href="{{ page_url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
     {% if page.noindex or layout.noindex %}<meta name="robots" content="noindex">{% endif %}
     
 
